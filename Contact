@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>product Form</title>
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<style type="text/css">
+	body
+	{
+		margin: 0;
+		padding: 0;
+		font-family: sans-serif;
+		font-size: 16px;
+		letter-spacing: 1px;
+		background: #222;
+	}
+		input[type="text"]
+		{
+			padding: 8px;
+			font-size: 16px;
+			font-family: sans-serif;
+			background-color: #444!important;
+			border-radius: 5px;
+			outline: none;
+			border:0;
+			margin-bottom: 5px;
+			color: #ccc;
+			width: 100%;
+		}
+		input[type=number]::-webkit-inner-spin-button {-webkit-appearance: none;}
+		input[type="number"]
+		{
+			padding: 8px;
+			font-size: 16px;
+			font-family: sans-serif;
+			background-color: #444!important;
+			border-radius: 5px;
+			outline: none;
+			border:0;
+			margin-bottom: 5px;
+			color: #ccc;
+			width: 100%;
+		}
+		textarea
+		{
+			padding: 8px;
+			font-size: 16px;
+			font-family: sans-serif;
+			background-color: #444!important;
+			border-radius: 5px;
+			outline: none;
+			height: 80px;
+			border:0;
+			margin-bottom: 5px;
+			color: #ccc;
+			width: 100%;
+		}
+		h3
+		{
+			color: #007bff;
+			text-align: left;
+			font-family: sans-serif;
+		}
+		hr
+		{
+			background: #000;
+		}
+		
+		label
+		{
+			color: #ccc;
+		}
+		.text
+		{
+			padding: 10px 10px;
+		}
+		.text:hover
+		{
+			background: #333;
+			text-decoration: none;
+		}
+		.nav
+		{
+			z-index: 9999!important;
+		}
+	</style>
+</head>
+<body>
+	<nav class="nav bg-info">
+		<a class="text text-light" href="/index">Home</a>
+		<a  class="text text-light" href="contactform">New Entry</a>
+		<a  class="text text-light" href="product">update</a>
+	</nav>
+<div style="background: #333;position: absolute;top:50%;left: 50%;width: 400px;height: auto;border: 0px solid #ccc; border-radius: 5px;transform: translate(-50%,-50%);padding: 20px;z-index: -1; box-shadow: 0px 0px 8px #000">
+	<form action="savedata" method="post" id="myform">
+		<h3>PRODUCT ENTRY</h3><hr>
+		{{csrf_field()}}
+		<label >ProductID</label><br>
+		<input class="form-group" type="text" autofocus="on" name="pid" placeholder="ID" value="{{$id['id']+1}}" readonly><br>
+		<label >ProductName</label><br>
+		<input class="form-group" id="pn" required type="text" autofocus="on" name="pname" placeholder="Name"><br>
+		<label >Price</label><br>
+		<input type="number"  id="p" class="form-group" required name="price" placeholder="Price"><br>
+		<label >Description</label><br>
+		<textarea class="form-group" id="d" required="required" name="des" placeholder="Description"></textarea><br><hr>
+		<center>
+		<div class="btn-group">
+			<button class="btn btn-success btn-lg" onclick="submit1()">
+	  			<span id="spinner" style="display: none;" class="spinner-border spinner-border-sm"></span>
+				  Submit
+			</button>
+			<a href="product"  class="btn btn-secondary btn-lg">Show products</a>
+		<input type="reset" value="Reset"  class="btn btn-danger btn-lg" onclick="hide_spin()">
+	</div></center>
+	</form>
+</div>
+<script type="text/javascript">
+	function submit1() {
+		document.getElementById('spinner').style.display="inline-block";
+		var name = document.getElementById('pn').value;
+		var price = document.getElementById('p').value;
+		var des = document.getElementById('d').value;
+		var NULL = "";
+		if(name!=NULL && price!=NULL && des!=NULL)
+		{
+		document.getElementById('myform').submit();
+		}
+	}
+	function hide_spin() {
+		document.getElementById('spinner').style.display="none";
+	}
+</script>
+</body>
+</html>
